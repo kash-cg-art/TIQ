@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 75 75">
+  <g id="Group_97" data-name="Group 97" transform="translate(0.47)">
+    <rect id="Rectangle_63" data-name="Rectangle 63" width="75" height="75" transform="translate(-0.47)" fill="#ff8a5c"/>
+    <g id="clock-circular-outline" transform="translate(14.197 19)">
+      <g id="Group_42" data-name="Group 42" transform="translate(6 2)">
+        <path id="Path_18" data-name="Path 18" d="M16.482,0A16.482,16.482,0,1,0,32.963,16.482,16.5,16.5,0,0,0,16.482,0Zm0,29.456A12.975,12.975,0,1,1,29.457,16.482,12.99,12.99,0,0,1,16.482,29.456Z" fill="#fff"/>
+        <path id="Path_19" data-name="Path 19" d="M54.187,27.093H46.78V18.187a1.357,1.357,0,0,0-2.714,0V28.45a1.357,1.357,0,0,0,1.357,1.357h8.764a1.357,1.357,0,1,0,0-2.714Z" transform="translate(-29.116 -11.12)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

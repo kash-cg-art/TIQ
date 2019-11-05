@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/dash.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900|Roboto+Condensed:700|Roboto:100,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <title>Exam</title>
+    <script>
+            jQuery.noConflict();
+                // Use jQuery via jQuery() instead of via $()
+            jQuery(document).ready(function(){
+                var count = 1;
+                jQuery('#addquestion').click(function(){
+                    // alert('hi');
+                    count++;
+                    jQuery('#newexamquestion').append(' <div id = "question'+count+'"><input type="text"  type="text"name="question'+count+'[statement]" required><br><div><label>CORRECT ANS </label><input type="text" name="question'+count+'[option1]" required><br></div><div><label>OPTION 1 </label><input type="text" name="question'+count+'[option2]" required><br></div><div><label>OPTION 2 </label><input type="text" name="question'+count+'[option3]" required><br></div><div><label>OPTION 3 </label><input type="text"name="question'+count+'[option4]" required><br></div><input type="file" onchange="readFiles(this)" name="question'+count+'[diagram]" accept="image/jpeg"></div>');
+                });
+                jQuery('#removequestion').click(function(){
+                    if(count>1){
+                        jQuery('#question'+count).remove();
+                        count--;
+                    }
+                    else{
+                        alert('should have atleast one question');
+                    }
+
+                })
+            }); 
+    </script>
+    <script>
+        function readFiles(obj){
+            if(obj.files[0].size>1024*1024*1){
+                alert('Image too big. Please upload JPG/PNG with size less than 1MB');
+                obj.value = '';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="home">
+        <a href="/student" onclick="if(!timeup){return confirm('Do you really want to exit the exam?')};"><img src="/home.svg" alt=""></a>
+   </div>
+    <div class="container_slim">
+        <aside>
+        </aside>
+        <section>
+            <div id="newexamform">
+                <form action="/examiner/exam" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <div id="newexamdata">
+                    <div id="firstrow">
+                        <label>Enter a suitable title</label>
+                        <input type="text" name="exam[name]" placeholder="Title" required>
+                    </div>
+                    <div id="secondrow">
+                        <div>
+                            <label>Category</label>
+                            <input type="text" name="exam[category]" placeholder="Category">
+                        </div>
+                        <div>
+                                <label>Difficulty</label>
+                                <select name="exam[difficulty]">
+                                    <option value="Easy">Easy</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Hard">Hard</option>
+                                </select>
+                        </div>
+                        <div>
+                                <label>Time</label>
+                                <input type="number" name="exam[duration]" placeholder="(Minutes)" min="1">
+                        </div>
+                    </div>
+                </div>
+                <div id="newexammeat">
+                    <div id="newexamquestion">
+                        <div id = "question1">
+                            <input type="text"name="question1[statement]" required><br>
+                            <div>
+                                <label>CORRECT ANS </label><input type="text" name="question1[option1]" required><br>
+                            </div>
+                            <div>
+                                <label>OPTION 1 </label><input type="text" name="question1[option2]" required><br>
+                            </div>
+                            <div>
+                                <label>OPTION 2 </label><input type="text" name="question1[option3]"required><br>
+                            </div>
+                            <div>
+                                <label>OPTION 3 </label><input type="text"name="question1[option4]"required><br>
+                            </div>
+                            <input type="file" onchange="readFiles(this)" name="question1[diagram]" accept="image/jpeg">
+                        </div>
+                    </div>
+                    <button id="addquestion" type="button">ADD QUESTION</button>
+                    <button id="removequestion"type="button">REMOVE</button>
+                </div>
+                <div id="newexamsubmit">
+                    <input type="submit" value="SUBMIT">
+                </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

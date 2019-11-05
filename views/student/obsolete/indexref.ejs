@@ -1,0 +1,36 @@
+<p>Welcome <%= user.username %></p>
+<%if(user.avatar){%>
+    <img width="200px" src="<%=user.avatar%>">
+<%}%>
+<form action="/user/upload" method="POST" enctype="multipart/form-data">
+<input type="file" name="avatar" accept="image/jpeg"><br>
+<input type="submit" value="Change DP">
+</form>
+<a href="/logout/<%=user._id%>">logout</a>
+
+<form action="/student/search" method="GET">
+<input type="search" name="s" placeholder="Enter Something To Search" required>
+<input type="search" name="category" placeholder="category(optional)">
+<select name="difficulty">
+    <option value="all">All</option>
+    <option value="easy">Easy</option>
+    <option value="medium">Medium</option>
+    <option value="hard">Hard</option>
+</select>
+<input type="submit" value="Search"> 
+</form>
+
+<%if(locals.exams){%>
+    <a href="/student">X</a>
+    <%exams.forEach(function(exam){%>
+        <div style="background: lightgrey;">
+            <p><%=exam.name%></p>
+            <p><%=exam.avgrating%>(<%=exam.raters%>)</p>
+            <a href="/student/examiner/<%=exam.creatorid%>"><p><%=exam.creatorname%></p></a>
+            <a href="/student/exam/<%=exam.id%>">TAKE EXAM</a>
+        </div>
+    <%})%>
+<%}%>
+<%if(locals.message){%>
+    <%=message%>
+<%}%>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/dash.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900|Roboto+Condensed:700|Roboto:100,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="home">
+        <a href="/student"><img src="/home.svg" alt=""></a>
+   </div>
+    <div class="container_slim">
+        <aside>
+        </aside>
+        <section>
+                <div class="profile_mid">
+                        <div class="ribbon"></div>
+                        <div>
+                            <div class="dp" id="dp">
+                                    <%if(typeof user.avatar!='undefined'){%>
+                                        <img src="<%=user.avatar%>" alt="ERROR">
+                                    <%}else{%>
+                                         <img src="/cam.png" alt="ERROR">
+                                     <%}%>
+                            </div>
+                            <div>
+                                <h2><%= user.username %></h2>
+                                <p><%= user.email %></p>
+                            </div>
+                        </div>
+                </div>
+            <%if(locals.user.exams){%>
+                <div class="yesexams_slim">
+                    <div class="exams">
+                            <%user.exams.forEach(function(exam){%>
+                        <div class="card">
+                            <h2><%=exam.name%></h2>
+                        <p class="starstudentcard">
+                            <% for(var i=0; i < Math.round(exam.avgrating) ;i++){ %>
+                                <img src="/icon/star.svg" alt="">
+                            <%}%>
+                            <% for(var j=0; j < 5 - Math.round(exam.avgrating) ;j++){ %>
+                                <img src="/icon/star grey.svg" alt="">
+                            <%}%>
+                            (<%=exam.raters%>)
+                        </p>
+                        <div class="info">
+                            <p><img src="/icon/list (1).svg" alt=""><%=exam.category%></p>
+                            <p><img src="/icon/expert-route.svg" alt=""><%=exam.difficulty%></p>
+                            <p><img src="/icon/clock-circular-outline.svg" alt=""><%=exam.duration%>:00</p>
+                        </div>
+                        <button class="take">  <a href="/student/exam/<%=exam.id%>">TAKE EXAM</a>  </button>
+                        <!-- <a href="#"></a> -->
+                    </div>
+                    <%})%>
+                </div>
+            </div>
+            <%}else{%>
+            <%}%>
+            
+            <img id = 'flag' src="/expert-route.svg" alt="">
+        </section>
+    </div>
+</body>
+</html>

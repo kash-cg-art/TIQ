@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/dash.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900|Roboto+Condensed:700|Roboto:100,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <title>Dashboard</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#upload").hide()
+        $("#dp").click(function(){
+            $('#upload').toggle()
+        })
+        $("#close").click(function(){
+            $('#upload').toggle()
+        })
+    })
+    </script>
+</head>
+<body>
+    <div id="upload" >
+        <div class="window">
+            <form action="/user/upload" method="POST" enctype="multipart/form-data">
+                    <input type="file"  name="avatar" accept="image/jpeg"><br>
+                    <input type="submit" value="Change DP">
+                    <button id="close" type='button'>CLOSE</button>
+                </form>
+        </div>
+    </div>
+    <div class="profile">
+               <div class="dp" id="dp">
+                       <%if(typeof user.avatar!='undefined'){%>
+                           <img src="<%=user.avatar%>" alt="ERROR">
+                       <%}else{%>
+                            <img src="/cam.png" alt="ERROR">
+                        <%}%>
+               </div>
+               <h2><%= user.username %></h2>
+               <p><%= user.email %></p>
+   </div>
+    <div class="container">
+        <aside>
+            <div class="wrapperul">
+                <h2>Help</h2>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Report Problem</a></li>
+                </ul>
+                <h2>Profile</h2>
+                <ul>
+                    <li><a href="#">Change Password</a></li>
+                    <li><a href="#">Delete Account</a></li>
+                    <li><a href="/logout/<%=user._id%>">Logout </a></li>
+                </ul>
+            </div>
+        </aside>
+        <section>
+            <%if(locals.user.exams.length !== 0){%>
+                <div class="yesexams">
+                    <button ><a href="/examiner/exam/new">CREATE NEW</a></button>
+                    <div class="exams">
+                            <%exams.forEach(function(exam){%>
+                        <div class="card">
+                            <h2><a href="/examiner/exam/<%=exam._id%>" style="text-decoration: underline;"><%=exam.name%></a></h2>
+                        <p>
+                            <% for(var i=0; i < Math.round(exam.avgrating) ;i++){ %>
+                                <img src="/icon/star.svg" alt="">
+                            <%}%>
+                            <% for(var j=0; j < 5 - Math.round(exam.avgrating) ;j++){ %>
+                                <img src="/icon/star grey.svg" alt="">
+                            <%}%>
+                            (<%=exam.raters%>)
+                        </p>
+                        <div class="info">
+                            <p><img src="/icon/list (1).svg" alt=""><%=exam.category%></p>
+                            <p><img src="/icon/expert-route.svg" alt=""><%=exam.difficulty%></p>
+                            <p><img src="/icon/clock-circular-outline.svg" alt=""><%=exam.duration%>:00</p>
+                        </div>
+                        <form action="/examiner/exam/<%= exam._id %>?_method=DELETE" method="POST" style="display: inline;" onsubmit="return confirm('Press Ok to PERMANENTLY DELETE <%=exam.name%>');">
+                            <button><img src="/icon/Path 16.svg" alt=""></button>
+                        </form>
+                        <!-- <a href="#"></a> -->
+                    </div>
+                    <%})%>
+                </div>
+                <hr>
+            </div>
+            <%}else{%>
+                <div class="noexam">
+                    <p>you have not created any exams yet.</p>
+                    <button ><a href="/examiner/exam/new">CREATE NEW</a></button>
+                </div>
+            <%}%>
+            
+            <img id = 'flag' src="/expert-route.svg" alt="">
+        </section>
+    </div>
+</body>
+</html>

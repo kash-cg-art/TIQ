@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.356" height="26.356" viewBox="0 0 26.356 26.356">
+  <g id="expert-route" transform="translate(0)">
+    <g id="Group_44" data-name="Group 44">
+      <g id="Group_43" data-name="Group 43">
+        <path id="Path_20" data-name="Path 20" d="M25.5,3.438H11.746a.859.859,0,0,0-.859.859V6.876H7.736A4.255,4.255,0,0,0,8.594,4.3,4.3,4.3,0,1,0,0,4.3,4.253,4.253,0,0,0,1.719,7.73V25.5a.859.859,0,0,0,.859.859H6.016a.859.859,0,0,0,.859-.859v-4.87H18.622a.861.861,0,0,0,.859-.859V17.189H25.5a.859.859,0,0,0,.859-.859V4.3A.86.86,0,0,0,25.5,3.438ZM5.157,19.767v4.87H3.438V8.508a4.323,4.323,0,0,0,1.719,0ZM4.3,6.876A2.578,2.578,0,1,1,6.876,4.3,2.584,2.584,0,0,1,4.3,6.876ZM6.876,18.908V8.595h4.011V16.33a.862.862,0,0,0,.475.769l3.619,1.81H6.876Zm10.886-.531-2.375-1.188h2.375Zm6.876-2.907H12.605V5.157H24.638Z" fill="#6e6e6e"/>
+      </g>
+    </g>
+    <g id="Group_46" data-name="Group 46" transform="translate(14.324 8.595)">
+      <g id="Group_45" data-name="Group 45" transform="translate(0 0)">
+        <rect id="Rectangle_56" data-name="Rectangle 56" width="2.431" height="2.431" transform="translate(0 1.719) rotate(-45)" fill="#6e6e6e"/>
+      </g>
+    </g>
+    <g id="Group_48" data-name="Group 48" transform="translate(19.48 8.595)">
+      <g id="Group_47" data-name="Group 47" transform="translate(0 0)">
+        <rect id="Rectangle_57" data-name="Rectangle 57" width="2.431" height="2.431" transform="translate(0 1.719) rotate(-45)" fill="#6e6e6e"/>
+      </g>
+    </g>
+  </g>
+</svg>

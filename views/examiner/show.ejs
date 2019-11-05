@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/dash.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900|Roboto+Condensed:700|Roboto:100,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <title>Exam</title>
+</head>
+<body>
+    <div class="home">
+        <a href="/student" onclick="if(!timeup){return confirm('Do you really want to exit the exam?')};"><img src="/home.svg" alt=""></a>
+   </div>
+    <div class="container_slim">
+        <aside>
+        </aside>
+        <section>
+            <div class="examform">
+                <div id="data">
+                    <div>
+                        <span><%=exam.name.toUpperCase()%> (<%=exam.createdAt.toDateString()%>)</span>
+                    </div>
+                    <div>
+                        <span><img src="/whitecat.svg" alt=""><%=exam.category%></span>
+                        <span><img src="/whiteflag.svg" alt=""><%=exam.difficulty%></span>
+                    </div>
+                </div>
+                <%for(var i=0;i<exam.questions.length;i++){%>
+                    <div class="wrapperquestion">
+                        <div class="question">
+                            <p>Q. <%=exam.questions[i].statement%></p>
+                            <ul>
+                                <li>
+                                    <span><%=exam.questions[i].option1%></span><br>
+                                </li>
+                                <li>
+                                        <span><%=exam.questions[i].option2%></span><br>
+                                </li>
+                                <li>
+                                        <span><%=exam.questions[i].option3%></span><br>
+                                </li>
+                                <li>
+                                        <span><%=exam.questions[i].option4%></span><br>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="diagram">
+                            <%if(exam.questions[i].path!==null){%>
+                                <a href="<%=exam.questions[i].path%>" target="_blank"><img src="<%=exam.questions[i].path%>" alt="not in server" width="300px"></a><br>
+                            <%}%>
+                        </div>
+                    </div>
+                <%}%>
+                <div class="rating">
+                        <form action="/examiner/exam/<%= exam._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Press Ok to PERMANENTLY DELETE <%=exam.name%>');">
+                            <button>DELETE</button>
+                        </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

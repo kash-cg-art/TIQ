@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>
+                jQuery.noConflict();
+                    // Use jQuery via jQuery() instead of via $()
+                jQuery(document).ready(function(){
+                    var count = 1;
+                    jQuery('#addbtn').click(function(){
+                        // alert('hi');
+                        count++;
+                        jQuery('#questions').append('<div class="question" id="question'+count+'"><input type="text" name="question'+count+'[statement]" placeholder="Question Statement" required><div class="options"> <li><input type="text" name="question'+count+'[option1]" placeholder="correct ans" required></li><li><input type="text" name="question'+count+'[option2]" placeholder="opt2" required></li><li><input type="text" name="question'+count+'[option3]" placeholder="opt3" required></li><li><input type="text" name="question'+count+'[option4]" placeholder="opt4" required></li><li><input type="file" name="question'+count+'[diagram]" accept="image/jpeg" onchange="readFiles(this)" ></li></div></div>');
+                    });
+                    jQuery('#rembtn').click(function(){
+                        if(count>1){
+                            jQuery('#question'+count).remove();
+                            count--;
+                        }
+                        else{
+                            alert('should have atleast one question');
+                        }
+
+                    })
+                }); 
+        </script>
+        <script>
+            function readFiles(obj){
+                if(obj.files[0].size>1024*1024*1){
+                    alert('Image too big. Please upload JPG/PNG with size less than 1MB');
+                    obj.value = '';
+                }
+            }
+        </script>
+    </head>
+    <body>
+            <form action="/examiner/exam" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <input type="text" name="exam[name]" placeholder="Exam Name" required><br>
+                <label >Difficulty</label>
+                <select name="exam[difficulty]">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="hard">Hard</option>
+                </select>
+                <label>Duration</label>
+                <input type="number" name="exam[duration]" placeholder="duration(minutes)" >
+                <label>Category</label>
+                <input type="text" name="exam[category]" placeholder="Ex. JEE">
+                <div id="questions">
+                    <div class="question" id = "question1">
+                        <input type="text" name="question1[statement]" placeholder="Question Statement" required>
+                        <div class="options">
+                            <li><input type="text" name="question1[option1]" placeholder="correct ans" required></li>
+                            <li><input type="text" name="question1[option2]" placeholder="opt2" required></li>
+                            <li><input type="text" name="question1[option3]" placeholder="opt3" required></li>
+                            <li><input type="text" name="question1[option4]" placeholder="opt4" required></li>
+                            <li><input type="file" name="question1[diagram]" accept="image/jpeg" onchange="readFiles(this)" ></li>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+            <button id="addbtn">Add New</button>
+            <button id="rembtn">remove</button>
+
+            
+    </body>
+</html>
+

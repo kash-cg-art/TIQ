@@ -1,0 +1,21 @@
+<%if(user.avatar!==undefined){%>
+    <img src="<%=user.avatar%>" alt="no dp" width="200px">
+<%}%>
+<h1><%=user.username%></h1>
+<h3 style="color: grey;"><%=user.email%></h3>
+<a href="/student">go back</a>
+<%user.exams.forEach(function(exam){%>
+    <div style="background: lightgrey;">
+        <h2>
+            <%=exam.name%>
+        </h2>
+        <h3 style="color: grey;">
+                <%=exam.category%> <%=exam.difficulty%> <%=exam.duration%>mins
+        </h3>
+        <p><%=exam.avgrating%>(<%=exam.raters%>)</p>
+        <a href="/student/exam/<%=exam.id%>">TAKE EXAM</a>
+        <h3 style="color: grey;">
+            <%=exam.createdAt.toDateString()%>
+        </h3>
+    </div>
+<%})%>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/dash.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900|Roboto+Condensed:700|Roboto:100,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <title>Exam Evaluation</title>
+    <script>
+        $(document).ready(function(){
+            $( "td:contains('-NA-')" ).css( "color", "#DDDDDD" );
+        })
+    </script>
+</head>
+<body>
+    <div class="home">
+        <a href="/student" onclick="if(!timeup){return confirm('Do you really want to exit the exam?')};"><img src="/home.svg" alt=""></a>
+   </div>
+    <div class="container_slim">
+        <aside>
+        </aside>
+        <section>
+            <div class="examform">
+                <div id="data">
+                    <div>
+
+                        <span><%=exam.name.toUpperCase()%> by <%=exam.creatorname%></span>
+                    </div>
+                    <div>
+                        <span><img src="/whitecat.svg" alt=""><%=exam.category%></span>
+                        <span><img src="/whiteflag.svg" alt=""><%=exam.difficulty%></span>
+                    </div>
+                </div>
+                <div id="jargon">
+                    <img src="/q.svg" alt="">
+                    <h1>THANK YOU FOR TAKING THE EXAM</h1>
+                    <p>Your result evaluation is as follows</p>
+                </div>
+                <div id="marks">
+                    <table>
+                        <tr>
+                            <th><%=evaluation.total%></th>
+                            <th><%=evaluation.attempt%></th>
+                            <th><%=evaluation.correct%></th>
+                            <th><%=evaluation.percentage%>%</th>
+                        </tr>
+                        <tr>
+                            <td>TOTAL QUESTIONS </td>
+                            <td>ATTEMPTED</td>
+                            <td>CORRECT</td>
+                            <td>PERCENTAGE</td>
+                        </tr>
+                    </table>
+                </div>
+                <%if(analysis.length>0){%>
+                <img id="zigzag" src="/zigzag.svg" alt="">
+                <div id="evaltablewrapper">
+                    <table id='evaltable'>
+                        <tr>
+                            <th>Question Statement</th>
+                            <th>Your Answer</th>
+                            <th>Correct Answer</th>
+                        </tr>
+                        
+                        <%analysis.forEach(function(question){%>
+                        <tr>
+                            <td><%=question.statement%></td>
+                            <td><%=question.selected%></td>
+                            <td><%=question.ans%></td>
+                        </tr>
+                        <%})%>
+                    </table>
+                </div>
+                <div id="dashbtncontainer">
+                    <a href="/student" id="dashbtnw">BACK TO DASHBOARD</a>
+                </div>
+                <%}else{%>
+                <div id="dashbtncontainer">
+                        <a href="/student" id="dashbtnw">BACK TO DASHBOARD</a>
+                </div>
+                <%}%>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+                

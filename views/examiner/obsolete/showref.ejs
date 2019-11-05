@@ -1,0 +1,13 @@
+<h1><%= exam.name %></h1>
+<h2>
+        <%=exam.category%> <%=exam.difficulty%> <%=exam.duration%>mins
+</h2>
+<a href="/">go back</a>
+<% exam.questions.forEach(function(question){ %>
+<p>Q. <%= question.statement %></p>
+<p>a) <%= question.option1 %></p>
+<p>b) <%= question.option2 %></p>
+<p>c) <%= question.option3 %></p>
+<p>d) <%= question.option4 %></p>
+<a href="<%= question.path%>" target="_blank" style="cursor: zoom-in;"><img src="<%= question.path%>" alt="" width="500px"></a>
+<% }) %>

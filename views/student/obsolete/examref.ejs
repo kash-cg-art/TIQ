@@ -1,0 +1,52 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script>
+// window.addEventListener('beforeunload', (event) => {
+//   // Cancel the event as stated by the standard.
+//   event.preventDefault();
+//   // Chrome requires returnValue to be set.
+//   event.returnValue = '';
+// });
+if (performance.navigation.type == 1) {
+  alert( "The page reload caused exam to reset" );
+}
+$( document ).ready(function() {
+    setTimeout(function(){
+         $('#exam').submit() 
+        }, <%=exam.duration%>*60*1000);
+        
+        var time = <%=exam.duration%> * 60
+
+        setInterval(function(){
+            var text= Math.floor((--time)/60) + ':' +(time%60)
+            $('#timer').text(text)
+        },1000)
+
+});
+</script>
+<!-- jquery -->
+<a href="/">go back</a>
+<p id="timer"></p>
+<h1><%=exam.name%></h1>
+<h2><%=exam.difficulty%> <%=exam.category%> <%=exam.duration%></h2>
+<form action="/student/exam" method="POST" id="exam" onsubmit="return confirm('Do you really want to submit the exam?');">
+    <input type="hidden" name="solution[examid]" value="<%=exam._id%>">
+    <%for(var i=0;i<exam.questions.length;i++){%>
+        <p><%=exam.questions[i].statement%></p>
+        <input type="radio" name="solution[question<%=i+1%>]" value="<%=exam.questions[i].option1%>" class="question<%=i+1%>"><span><%=exam.questions[i].option1%></span>
+        <input type="radio" name="solution[question<%=i+1%>]" value="<%=exam.questions[i].option2%>"class="question<%=i+1%>"><span><%=exam.questions[i].option2%></span>
+        <input type="radio" name="solution[question<%=i+1%>]" value="<%=exam.questions[i].option3%>"class="question<%=i+1%>"><span><%=exam.questions[i].option3%></span>
+        <input type="radio" name="solution[question<%=i+1%>]" value="<%=exam.questions[i].option4%>"class="question<%=i+1%>"><span><%=exam.questions[i].option4%></span>
+        <br>
+        <%if(exam.questions[i].path!==null){%>
+            <a href="<%=exam.questions[i].path%>" target="_blank"><img src="<%=exam.questions[i].path%>" alt="not in server" width="300px"></a><br>
+        <%}%>
+        <input type="button" onclick="$('.question<%=i+1%>').attr('checked',false)" value="Clear Answer">
+    <%}%>
+    <br>
+    <%if(!rated){%>
+        <label>Rating</label><input type="number" min="1" max="5" name="rating" required><br>
+    <%}else{%>
+        <p>YOU HAVE ALREADY GIVEN A RATING</p>
+    <%}%>
+    <input type="submit" value="Submit" >
+</form>

@@ -1,0 +1,14 @@
+<a href="/student">go home</a>
+
+<h1><%=exam.name%></h1>
+<h2><%=exam.category%> <%=exam.difficulty%></h2>
+
+<p>You Attempted <%=evaluation.attempt%> Questions out of <%=evaluation.total%> Questions.<%=evaluation.correct%> were correct and you scored <%=evaluation.percentage%>%</p>
+
+<%if(analysis.length>0){%>
+    <p>analysis:</p>
+    <%analysis.forEach(function(question){%>
+        <li><%=question.statement%> : Correct answer was <%=question.ans%> , you chose <%=question.selected%>
+        </li>
+    <%})%>
+<%}%>

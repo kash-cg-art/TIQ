@@ -1,0 +1,21 @@
+<p>Welcome <%= user.username %></p>
+<a href="/logout/<%=user._id%>">logout</a><br>
+<%if(user.avatar){%>
+    <img width="200px" src="<%=user.avatar%>">
+<%}%>
+<form action="/user/upload" method="POST" enctype="multipart/form-data">
+<input type="file" name="avatar" accept="image/jpeg"><br>
+<input type="submit" value="Change DP">
+</form>
+<%if(locals.exams){%>
+    
+    <%exams.forEach(function(exam){%>
+        <a href="/examiner/exam/<%=exam._id%>"><%=exam.name%></a>
+        <form action="/examiner/exam/<%= exam._id %>?_method=DELETE" method="POST" style="display: inline;" >
+            <button>DELETE</button>
+        </form>
+        <br>
+    <%})%>
+<%}%>
+
+<h1><a href="/examiner/exam/new">CREATE NEW</a></h1>

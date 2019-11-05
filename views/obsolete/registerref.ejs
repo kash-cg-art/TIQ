@@ -1,0 +1,14 @@
+<h1>Register</h1>
+<%if(typeof error !== 'undefined'){%>
+    <p style="color: red;"><%=error%></p>
+<%}%>
+<form action="/register" method="POST">
+    <input type="text" name="user[username]" placeholder="Username" required><br>
+    <input type="email" name="user[email]" placeholder="Email" required><br>
+    <input type="password" name="user[password]" placeholder="Password" required><br>
+    <label >Role</label><br>
+    <span>Student</span><input type="radio" name="user[role]" value="student">
+    <span>Examiner</span><input type="radio" name="user[role]" value="examiner"><br>
+    <input type="submit" value="Register">
+</form>
+<a href="/login">login now</a>

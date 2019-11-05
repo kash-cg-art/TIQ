@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign up|TIQ</title>
+    <link rel="stylesheet" href="public/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900|Roboto+Condensed:700|Roboto:700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="animation">
+            <video src="1mb.mp4" loop autoplay></video>
+        </div>
+        <div class="formside">
+            <div class="wrapper">
+            <img src="Group 10.svg" alt="Logo" width="95em" id="logo">
+            <h1>SIGN UP </h1>
+            <%if(typeof error !== 'undefined'){%>
+                <p style="color: red;">ERROR: <%=error%></p>
+            <%}%>
+            <form action="/register" method="POST" autocomplete="off">
+                <label for="email">Username</label>
+                <input name ="user[username]" type="text" placeholder="Username" required>
+                <label for="email">Email Address</label>
+                <input name ="user[email]" type="text" placeholder="Email Address" required>
+                <label for="pass">Password</label>
+                <input name ="user[password]" type="password" placeholder="password" required>
+                <label for="pass">Confirm Password</label>
+                <input name ="passwordre" type="password" placeholder="Re-type password">
+                <div class="line">
+                        <p>I am?</p>
+                        <p><input type="radio" name="user[role]" value="student" checked required> Student</p>
+                        <p><input type="radio" name="user[role]" value="examiner" required> Examiner</p>
+                </div>
+                <input type="Submit" value="SIGN UP">
+            </form>
+            <hr>
+            <p>Already have account? <a href="login">Login</a></p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

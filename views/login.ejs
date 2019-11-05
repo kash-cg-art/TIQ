@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login|TIQ</title>
+    <link rel="stylesheet" href="public/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900|Roboto+Condensed:700|Roboto:700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="animation">
+            <video src="1mb.mp4" loop autoplay></video>
+        </div>
+        <div class="formside">
+            <div class="wrapper">
+            <img src="Group 10.svg" alt="Logo" width="95em" id="logo">
+            <h1>LOGIN</h1>
+            <%if(typeof error !== 'undefined'){%>
+                <p style="color: red;">ERROR: <%=error%></p>
+            <%}%>
+            <form action="/login" method="POST">
+                <label for="email">Email Address</label>
+                <input name ="user[email]" type="text" placeholder="email" required>
+                <label for="pass">Password</label>
+                <input name ="user[password]" type="password" placeholder="password" required>
+                <div class="line">
+                        <p></p>
+                        <p></p>
+                </div>
+                <input type="Submit" value="LOGIN">
+            </form>
+            <hr>
+            <p>Don't have account? <a href="register">Sign Up</a></p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
